@@ -7,10 +7,13 @@ import colors from '../config/colors';
 
 export default function ListingDetailsScreen({ route }) {
 	const listing = route.params;
-
+	console.log(listing.images[0].url);
 	return (
 		<View style={styles.card}>
-			<Image source={listing.image} style={styles.image} />
+			<Image
+				source={{ uri: listing.images[0].url }}
+				style={styles.image}
+			/>
 			<View style={styles.detailsContainer}>
 				<AppText style={styles.title}>{listing.title}</AppText>
 				<AppText style={styles.subTitle}>{listing.price}</AppText>
@@ -18,7 +21,8 @@ export default function ListingDetailsScreen({ route }) {
 					<ListItem
 						image={require('../assets/me.jpg')}
 						title='Bartosz Art'
-						subTitle='5 Listings'></ListItem>
+						subTitle='5 Listings'
+					></ListItem>
 				</View>
 			</View>
 		</View>

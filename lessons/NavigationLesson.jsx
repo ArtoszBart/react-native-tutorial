@@ -37,7 +37,8 @@ const StackNavigator = () => (
 			headerStyle: { backgroundColor: 'tomato' },
 			headerTintColor: 'white',
 			headerShown: true,
-		}}>
+		}}
+	>
 		<Stack.Screen
 			name='Tweets'
 			component={Tweets}
@@ -67,7 +68,8 @@ const TabNavigator = () => (
 			activeTintColor: 'white',
 			inactiveBackgroundColor: '#eee',
 			inactiveTintColor: 'black',
-		}}>
+		}}
+	>
 		<Tab.Screen
 			name='Feed'
 			component={StackNavigator}
