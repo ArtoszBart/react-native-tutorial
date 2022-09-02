@@ -20,7 +20,7 @@ import Exercise from './lessons/Exercise';
 export default function App() {
 	return (
 		<View style={{ flex: 1 }}>
-			<NavigationLesson />
+			<Exercise />
 			<StatusBar style='auto' />
 		</View>
 	);

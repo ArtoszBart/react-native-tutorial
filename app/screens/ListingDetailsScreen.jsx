@@ -1,33 +1,34 @@
-import React from 'react'
-import { View, StyleSheet, Image, SafeAreaView } from 'react-native'
+import React from 'react';
+import { View, StyleSheet, Image, SafeAreaView } from 'react-native';
 
-import AppText from '../components/AppText'
-import ListItem from '../components/ListItem'
-import colors from '../config/colors'
+import AppText from '../components/AppText';
+import ListItem from '../components/ListItem';
+import colors from '../config/colors';
 
-export default function ListingDetailsScreen() {
-  return (
-	<SafeAreaView style={styles.card}>
-		<Image source={require('../assets/jacket.jpg')} style={styles.image}/>
-		<View style={styles.detailsContainer}>
-			<AppText style={styles.title}>Red jacket for sale!</AppText>
-			<AppText style={styles.subTitle}>$100</AppText>
-			<View style={styles.userContainer}>
-				<ListItem
-					image={require('../assets/mosh.jpg')}
-					title='Mosh Hamedani'
-					subTitle='5 Listings'
-					></ListItem>
+export default function ListingDetailsScreen({ route }) {
+	const listing = route.params;
+
+	return (
+		<View style={styles.card}>
+			<Image source={listing.image} style={styles.image} />
+			<View style={styles.detailsContainer}>
+				<AppText style={styles.title}>{listing.title}</AppText>
+				<AppText style={styles.subTitle}>{listing.price}</AppText>
+				<View style={styles.userContainer}>
+					<ListItem
+						image={require('../assets/me.jpg')}
+						title='Bartosz Art'
+						subTitle='5 Listings'></ListItem>
+				</View>
 			</View>
 		</View>
-	</SafeAreaView>
-  )
+	);
 }
 
 const styles = StyleSheet.create({
 	image: {
 		width: '100%',
-		height: 300
+		height: 300,
 	},
 	detailsContainer: {
 		padding: 20,
@@ -45,4 +46,4 @@ const styles = StyleSheet.create({
 	userContainer: {
 		marginVertical: 40,
 	},
-})
+});
