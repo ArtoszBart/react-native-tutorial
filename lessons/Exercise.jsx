@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import AppLoading from 'expo-app-loading';
 
@@ -18,6 +18,7 @@ import navigationTheme from '../app/navigation/navigationTheme';
 import AppNavigator from '../app/navigation/AppNavigator';
 import OfflineNotice from '../app/components/OfflineNotice';
 import authStorage from '../app/auth/storage';
+import { navigationRef } from '../app/navigation/rootNavigation';
 
 export default function Exercise() {
 	const [user, setUser] = useState();
@@ -28,7 +29,7 @@ export default function Exercise() {
 		if (user) setUser(user);
 	};
 
-	if (!isAppReady)
+	if (!isAppReady) {
 		return (
 			<AppLoading
 				startAsync={restoreUserAsync}
@@ -36,11 +37,12 @@ export default function Exercise() {
 				onError
 			/>
 		);
+	}
 
 	return (
 		<AuthContext.Provider value={{ user, setUser }}>
 			<OfflineNotice />
-			<NavigationContainer theme={navigationTheme}>
+			<NavigationContainer ref={navigationRef} theme={navigationTheme}>
 				{user ? <AppNavigator /> : <AuthNavigator />}
 			</NavigationContainer>
 		</AuthContext.Provider>

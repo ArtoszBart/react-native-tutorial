@@ -20,6 +20,7 @@ import NavigationLesson from './lessons/NavigationLesson';
 import OfflineSupportLesson from './lessons/OfflineSupportLesson';
 
 import Exercise from './lessons/Exercise';
+import NotificationsLesson from './lessons/NotificationsLesson';
 
 export default function App() {
 	return (
