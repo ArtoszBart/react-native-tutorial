@@ -6,6 +6,7 @@ import ListItem from '../components/ListItem';
 import colors from '../config/colors';
 import Icon from '../components/Icon';
 import ListItemSeparator from '../components/ListItemSeparator';
+import useAuth from '../auth/useAuth';
 
 const menuItems = [
 	{
@@ -26,12 +27,14 @@ const menuItems = [
 ];
 
 export default function AccountScreen({ navigation }) {
+	const { user, logOut } = useAuth();
+
 	return (
 		<Screen style={styles.screen}>
 			<View style={styles.container}>
 				<ListItem
-					title='Bartosz Art'
-					subTitle='bartosz.art@wp.pl'
+					title={user.name}
+					subTitle={user.email}
 					image={require('../assets/me.jpg')}
 				/>
 			</View>
@@ -63,6 +66,7 @@ export default function AccountScreen({ navigation }) {
 					IconComponent={
 						<Icon name={'logout'} backgroundColor='#ffe66d' />
 					}
+					onPress={() => logOut()}
 				/>
 			</View>
 		</Screen>

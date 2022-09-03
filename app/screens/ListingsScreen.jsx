@@ -39,30 +39,35 @@ export default function ListingsScreen({ navigation }) {
 	}, []);
 
 	return (
-		<Screen style={styles.screen}>
-			{hasError && (
-				<>
-					<AppText>Couldn't retrieve the listings.</AppText>
-					<AppButton title='Retry' onPress={loadListingsAsync} />
-				</>
-			)}
+		<>
 			<ActivityIndicator visible={isLoading} />
-			<FlatList
-				data={listings}
-				keyExtractor={(listing) => listing.id.toString()}
-				renderItem={({ item }) => (
-					<Card
-						title={item.title}
-						subTitle={'$' + item.price}
-						imageUrl={item.images[0].url}
-						thumbnailUrl={item.images[0].thumbnailUrl}
-						onPress={() =>
-							navigation.navigate(routes.LISTING_DETAILS, item)
-						}
-					/>
+			<Screen style={styles.screen}>
+				{hasError && (
+					<>
+						<AppText>Couldn't retrieve the listings.</AppText>
+						<AppButton title='Retry' onPress={loadListingsAsync} />
+					</>
 				)}
-			/>
-		</Screen>
+				<FlatList
+					data={listings}
+					keyExtractor={(listing) => listing.id.toString()}
+					renderItem={({ item }) => (
+						<Card
+							title={item.title}
+							subTitle={'$' + item.price}
+							imageUrl={item.images[0].url}
+							thumbnailUrl={item.images[0].thumbnailUrl}
+							onPress={() =>
+								navigation.navigate(
+									routes.LISTING_DETAILS,
+									item
+								)
+							}
+						/>
+					)}
+				/>
+			</Screen>
+		</>
 	);
 }
 

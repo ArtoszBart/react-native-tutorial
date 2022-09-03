@@ -1,9 +1,16 @@
 import { create } from 'apisauce';
 import cache from '../utility/cache';
+import authStorage from '../auth/storage';
 
 const apiClient = create({
 	baseURL: 'https://react-native-tutorial-backend.herokuapp.com/api',
 	// baseURL: 'http://localhost:5000',
+});
+
+apiClient.addAsyncRequestTransform(async (request) => {
+	const authToken = await authStorage.getTokenAsync();
+	if (!authToken) return;
+	request.headers['x-auth-token'] = authToken;
 });
 
 const get = apiClient.get;

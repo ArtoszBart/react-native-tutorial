@@ -1,5 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
+import { useState } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import AppLoading from 'expo-app-loading';
+
+import AuthContext from '../app/auth/context';
 
 import ViewImageScreen from '../app/screens/ViewImageScreen';
 import WelcomeScreen from '../app/screens/WelcomeScreen';
@@ -10,19 +13,36 @@ import Icon from '../app/components/Icon';
 import ListItem from '../app/components/ListItem';
 import AccountScreen from '../app/screens/AccountScreen';
 import ListingsScreen from '../app/screens/ListingsScreen';
-import { NavigationContainer } from '@react-navigation/native';
 import AuthNavigator from '../app/navigation/AuthNavigator';
 import navigationTheme from '../app/navigation/navigationTheme';
 import AppNavigator from '../app/navigation/AppNavigator';
 import OfflineNotice from '../app/components/OfflineNotice';
+import authStorage from '../app/auth/storage';
 
 export default function Exercise() {
+	const [user, setUser] = useState();
+	const [isAppReady, setIsAppReady] = useState(false);
+
+	const restoreUserAsync = async () => {
+		const user = await authStorage.getUserAsync();
+		if (user) setUser(user);
+	};
+
+	if (!isAppReady)
+		return (
+			<AppLoading
+				startAsync={restoreUserAsync}
+				onFinish={() => setIsAppReady(true)}
+				onError
+			/>
+		);
+
 	return (
-		<>
+		<AuthContext.Provider value={{ user, setUser }}>
 			<OfflineNotice />
 			<NavigationContainer theme={navigationTheme}>
-				<AppNavigator />
+				{user ? <AppNavigator /> : <AuthNavigator />}
 			</NavigationContainer>
-		</>
+		</AuthContext.Provider>
 	);
 }

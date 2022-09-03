@@ -1,5 +1,8 @@
+import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
+
+import AuthContext from './app/auth/context';
 
 // SCREENS
 import ViewImageScreen from './app/screens/ViewImageScreen';
