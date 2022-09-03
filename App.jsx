@@ -14,6 +14,7 @@ import ListsLesson from './lessons/ListsLesson';
 import InputConponentsLesson from './lessons/InputConponentsLesson';
 import NativeFeaturesLesson from './lessons/NativeFeaturesLesson';
 import NavigationLesson from './lessons/NavigationLesson';
+import OfflineSupportLesson from './lessons/OfflineSupportLesson';
 
 import Exercise from './lessons/Exercise';
 
