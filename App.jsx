@@ -3,6 +3,9 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 
 import AuthContext from './app/auth/context';
+import logger from './app/utility/logger';
+
+logger.start();
 
 // SCREENS
 import ViewImageScreen from './app/screens/ViewImageScreen';
@@ -23,6 +26,7 @@ import Exercise from './lessons/Exercise';
 import NotificationsLesson from './lessons/NotificationsLesson';
 
 export default function App() {
+	// logger.log(new Error('Error in app'));
 	return (
 		<View style={{ flex: 1 }}>
 			<Exercise />
