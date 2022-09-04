@@ -17,13 +17,17 @@
         "**/*"
       ],
       "ios": {
-        "supportsTablet": true
+        "supportsTablet": true,
+        "bundleIdentifier": "com.artoszbart.react-native-tutorial",
+        "buildNumber": "1.0.0"
       },
       "android": {
         "adaptiveIcon": {
           "foregroundImage": "./app/assets/adaptive-icon.png",
           "backgroundColor": "#FFFFFF"
-        }
+        },
+        "package": "com.artoszbart.react-native-tutorial",
+        "versionCode": 1
       },
       "web": {
         "favicon": "./app/assets/favicon.png"
@@ -57,6 +61,9 @@
           "config": {}
         }
       ]
+    },
+    "ios": {
+      "bundleIdentifier": "com.artoszbart.react-native-tutorial"
     }
   }
 }
